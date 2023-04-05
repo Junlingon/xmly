@@ -1,0 +1,108 @@
+$common-gray-color: #d9d9d9;
+$common-bg-color: #fafafa;
+
+@mixin shadowMixins {
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  left: 0;
+  width: 30px;
+  box-shadow: inset -10px 0 8px -8px #00000026;
+  transform: translate(-100%);
+  transition: box-shadow 0.3s;
+  content: '';
+  pointer-events: none;
+}
+
+.customTableDetail {
+  box-sizing: border-box !important;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  color: #333;
+  font-size: 12px;
+
+  .header {
+    width: 100%;
+    margin-bottom: 8px;
+    overflow: hidden;
+    font-family: PingFangSC-Medium;
+    &-content {
+      width: max-content;
+      .header-cell {
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+        height: 44px;
+        padding-left: 7.5px;
+
+        line-height: 44px;
+        background-color: $common-bg-color;
+        border-bottom: 0.5px solid $common-gray-color;
+        &:last-child {
+          &::after {
+            display: none;
+          }
+        }
+        &::after {
+          position: absolute;
+          top: 12px;
+          right: 0;
+          z-index: 1;
+          width: 1px;
+          height: 20px;
+          background-color: $common-gray-color;
+          content: '';
+        }
+        &.fixed {
+          &::before {
+            @include shadowMixins();
+          }
+        }
+      }
+    }
+  }
+  .table-body {
+    width: calc(100% + 0px);
+    overflow: auto scroll;
+    &-row {
+      width: max-content;
+      font-family: PingFangSC-Regular;
+      &-header {
+        height: 44px;
+        padding-left: 8px;
+        line-height: 44px;
+        background-color: #f5f5f5;
+      }
+      &-list {
+        &-col {
+          display: flex;
+          &-cell {
+            position: relative;
+            display: inline-block;
+            display: flex;
+            align-items: center;
+            min-height: 64px;
+            padding: 12px 8px;
+            background-color: #fff;
+            &.fixed {
+              &::after {
+                @include shadowMixins();
+              }
+            }
+            &::before {
+              position: absolute;
+              bottom: 0;
+              left: -50%;
+              width: 200%;
+              height: 1px;
+              background-color: $common-gray-color;
+              transform: scale(0.5);
+              content: '';
+            }
+          }
+        }
+      }
+    }
+  }
+}
