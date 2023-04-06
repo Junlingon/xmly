@@ -1,0 +1,28 @@
+@import '../../../style/common.less';
+
+@filterForm-layout-prefix-cls: ~'@{mi-prefix}-filterForm-layout';
+
+// .filterformlayout
+.@{filterForm-layout-prefix-cls} {
+  /deep/ .ant-form-item {
+    margin-bottom: 12px;
+
+    .ant-col.ant-form-item-label {
+      // width: 80px;
+    }
+    .ant-form-item-control {
+      // width: 180px;
+
+      .ant-picker {
+        width: 100%;
+      }
+    }
+  }
+
+  .down-qut-icon {
+    color: var(--color);
+    &.active {
+      transform: rotate(180deg);
+    }
+  }
+}
