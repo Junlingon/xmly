@@ -1,0 +1,17 @@
+.oneHidden {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.manyLineHidden {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.xToolTipView {
+  display: inline-block;
+  width: 100%;
+}

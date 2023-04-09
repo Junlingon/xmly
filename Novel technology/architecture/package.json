@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@sentry/react": "6.5.1",
+    "@sentry/react": "^7.47.0",
     "@tailwindcss/postcss7-compat": "2.2.4",
     "antd": "4.15.5",
     "autoprefixer": "9",
@@ -20,6 +20,7 @@
   },
   "scripts": {
     "start": "env-cmd -e development craco start",
+    "start-prod": "env-cmd -e production craco start",
     "build": "yarn build-prod",
     "test": "craco test",
     "eject": "react-scripts eject",
@@ -101,7 +102,7 @@
     "craco-less": "^1.17.0",
     "craco-plugin-scoped-css": "^1.1.1",
     "craco-scoped-less": "^1.0.3",
-    "cross-env": "^7.0.2",
+    "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "env-cmd": "^10.1.0",
     "generic-names": "^3.0.0",

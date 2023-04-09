@@ -1,0 +1,18 @@
+.low-code-form {
+  &.ant-form-inline {
+    .ant-form-item {
+      margin-bottom: 5px;
+    }
+    .ant-form-item-with-help {
+      margin-bottom: 5px;
+
+      .ant-form-item-control {
+        position: relative;
+
+        .ant-form-item-explain-error {
+          position: absolute;
+        }
+      }
+    }
+  }
+}
