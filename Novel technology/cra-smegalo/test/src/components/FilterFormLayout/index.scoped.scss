@@ -1,0 +1,13 @@
+.filterformlayout {
+  /deep/ .ant-form-item {
+    margin-bottom: 16px;
+
+    .ant-form-item-control {
+      width: 180px;
+
+      .ant-picker {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "name": "test",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@sentry/react": "^6.5.1",
+    "@tailwindcss/postcss7-compat": "^2.2.4",
+    "@xmly/reset.css": "^1.1.2",
+    "@xmly/xmrep": "^2.3.8",
+    "antd": "^4.15.5",
+    "autoprefixer": "^9",
+    "axios": "^0.21.1",
+    "core-js": "^3.12.1",
+    "postcss": "^7",
+    "react": "^17.0.2",
+    "react-app-polyfill": "^2.0.0",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
+    "regenerator-runtime": "^0.13.7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  },
+  "scripts": {
+    "start": "env-cmd -e development craco start",
+    "build": "yarn build-prod",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "build:analyze": "cross-env BUILD_ANALYZER=true yarn build-prod",
+    "build-test": "env-cmd -e test craco build",
+    "build-uat": "env-cmd -e uat craco build",
+    "build-prod": "env-cmd -e production craco build",
+    "commit": "git-cz",
+    "release": "standard-version",
+    "release:patch": "standard-version --releaseAs patch",
+    "release:minor": "standard-version --releaseAs minor",
+    "release:major": "standard-version --releaseAs major"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "./node_modules/@umijs/fabric/dist/eslint"
+    ],
+    "rules": {
+      "@typescript-eslint/consistent-type-definitions": 0,
+      "@typescript-eslint/no-invalid-this": 0,
+      "@typescript-eslint/consistent-type-imports": 0,
+      "@typescript-eslint/no-shadow": 0,
+      "no-underscore-dangle": 0,
+      "import/no-extraneous-dependencies": 0,
+      "import/no-dynamic-require": 0,
+      "react/sort-comp": 0,
+      "jsx-a11y/aria-role": 0,
+      "jsx-a11y/alt-text": 0,
+      "jsx-a11y/anchor-has-content": 0,
+      "jsx-a11y/control-has-associated-label": 0,
+      "no-param-reassign": 0,
+      "prefer-object-spread": 0,
+      "consistent-return": 0,
+      "react/button-has-type": 0,
+      "react/react-in-jsx-scope": 0,
+      "prefer-destructuring": 0,
+      "array-callback-return": 0,
+      "no-plusplus": 0,
+      "no-nested-ternary": 0,
+      "no-unused-expressions": 0
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "yxpm": {
+    "output": [
+      "build"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-decorators": "^7.10.5",
+    "@commitlint/cli": "9.1.2",
+    "@commitlint/config-conventional": "9.1.2",
+    "@craco/craco": "^6.0.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/lodash": "^4.14.171",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-css-modules": "^4.6.2",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-router-dom": "^5.1.8",
+    "@umijs/fabric": "^2.5.13",
+    "babel-plugin-import": "^1.13.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-plugin-react-css-modules": "^5.2.6",
+    "circular-dependency-plugin": "^5.2.0",
+    "commitizen": "^4.2.1",
+    "craco-less": "^1.17.0",
+    "craco-plugin-scoped-css": "^1.1.1",
+    "craco-scoped-less": "^1.0.3",
+    "cross-env": "^7.0.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "env-cmd": "^10.1.0",
+    "generic-names": "^3.0.0",
+    "http-proxy-middleware": "^1.0.5",
+    "lint-staged": "^11.0.0",
+    "mockjs": "^1.1.0",
+    "node-sass": "^5.0.0",
+    "postcss-less": "^3.1.4",
+    "postcss-scss": "^3.0.0",
+    "prettier": "^2.3.2",
+    "standard-version": "^9.1.1",
+    "tsconfig-paths-webpack-plugin": "^3.3.0",
+    "typescript": "^4.1.2",
+    "vconsole-webpack-plugin": "^1.5.2",
+    "web-vitals": "^1.0.1",
+    "webpack-bundle-analyzer": "^3.9.0",
+    "webpackbar": "^5.0.0-3",
+    "yorkie": "^2.0.0"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged --allow-empty",
+    "commit-msg": "commitlint -E GIT_PARAMS"
+  },
+  "eslintIgnore": [
+    "src/setupProxy.js",
+    "src/assets/styles/tailwind.css"
+  ],
+  "lint-staged": {
+    "**/*.{js,jsx,json,css,scss,less,html,md}": [
+      "prettier --write"
+    ],
+    "src/**/*.{ts,tsx}": [
+      "prettier --parser=typescript --write"
+    ],
+    "src/**/*.{ts,tsx,js,jsx}": [
+      "eslint --fix"
+    ]
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "semi": true,
+    "tabWidth": 2
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

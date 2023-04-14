@@ -1,0 +1,14 @@
+.actionlist {
+  color: red;
+  /deep/ span {
+    color: var(--color);
+    cursor: pointer;
+    &:not(:last-child) {
+      &:after {
+        padding: 0 4px;
+        color: #e5e5e5;
+        content: '|';
+      }
+    }
+  }
+}
