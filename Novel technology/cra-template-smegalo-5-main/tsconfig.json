@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es5", // 代码生成目标的 ECMAScript 版本
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ], // 编译时需要的库
+    "allowJs": true, // 允许编译 JavaScript 文件
+    "skipLibCheck": true, // 不检查声明文件
+    "esModuleInterop": true, // 实现 CommonJS 和 ES6 互通
+    "allowSyntheticDefaultImports": true, // 允许导入默认的模块导出
+    "strict": true, // 开启严格模式
+    "forceConsistentCasingInFileNames": true, // 强制文件名的大小写一致
+    "noFallthroughCasesInSwitch": true, // 当 switch 的 case 忘记 add 'break' 时，会抛出错误
+    "module": "esnext", // 导出模块的类型
+    "moduleResolution": "node", // 导入模块的类型
+    "resolveJsonModule": true, // 启用对 JSON 文件的支持
+    "isolatedModules": true, // 确保每个文件都包含一个模块
+    "noEmit": true, // 不生成输出文件
+    "jsx": "react-jsx", // 类型脚本编译 jsx 文件
+    "baseUrl": ".", // 定义相对路径的起点
+    "paths": { // 自定义模块名和它们的对应路径映射
+      "@/*": [
+        "src/*"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ] // 指定编译器编译源代码的文件夹路径
+}
