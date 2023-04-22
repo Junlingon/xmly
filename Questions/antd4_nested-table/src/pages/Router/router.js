@@ -15,6 +15,26 @@ const routes = [
                         )
                 ),
             },
+            {
+                name: 'Jsx风格Api',
+                path: '/jsxTable',
+                component: lazy(
+                    () =>
+                        import(
+                  /* webpackChunkName: "table" */ '../tables/jsxApiTable'
+                        )
+                ),
+            },
+            {
+                name: '可选择',
+                path: '/checkTable/:id',
+                component: lazy(
+                    () =>
+                        import(
+                  /* webpackChunkName: "table" */ '../tables/checkTable'
+                        )
+                ),
+            },
         ],
     },
 ];
