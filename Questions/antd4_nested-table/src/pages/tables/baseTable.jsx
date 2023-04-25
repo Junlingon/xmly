@@ -20,7 +20,7 @@ const BaseTable = () => {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
-            render: (text) => <a>{text}</a>,
+            render: (text) => <a href>{text}</a>,
             //参数分别为当前行的值，当前行数据，行索引
         },
         {
@@ -59,8 +59,8 @@ const BaseTable = () => {
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
-                    <a>Invite {record.name}</a>
-                    <a onClick={() => { setData(data.filter(item => item.key !== record.key)) }}>Delete</a>
+                    <a href>Invite {record.name}</a>
+                    <a href onClick={() => { setData(data.filter(item => item.key !== record.key)) }}>Delete</a>
                 </Space>
             ),
         },
@@ -118,7 +118,7 @@ const BaseTable = () => {
 
     return (
         <>
-            <a onClick={Add}>添加列表</a>
+            <a href onClick={Add}>添加列表</a>
             <Table columns={columns} dataSource={data} />
         </>
 
