@@ -35,6 +35,16 @@ const routes = [
                         )
                 ),
             },
+            {
+                name: '筛选排序',
+                path: '/fitterOrderTable/:id',
+                component: lazy(
+                    () =>
+                        import(
+                  /* webpackChunkName: "table" */ '../tables/fitterOrderTable'
+                        )
+                ),
+            },
         ],
     },
 ];

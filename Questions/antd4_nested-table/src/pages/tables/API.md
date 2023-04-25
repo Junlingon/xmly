@@ -3,3 +3,7 @@
 是一个对象的形式，
 selectedRowKeys指定选中项的 key 数组，需要和 onChange 进行配合
 onChange 选中项发生变化时的回调
+
+
+## onChange
+这是写在table里的属性   分页、排序、筛选变化时触发
