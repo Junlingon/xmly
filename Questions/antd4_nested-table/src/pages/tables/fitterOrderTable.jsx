@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Space, Table, Input } from 'antd';
-import Highlighter from 'react-highlight-words';
+import Highlighter from 'react-highlight-words'; // 导入关键字高亮组件
 import { SearchOutlined } from '@ant-design/icons';
 
 const Table1 = () => {
@@ -34,9 +34,9 @@ const Table1 = () => {
                     ],
                 },
             ],
-            // 指定筛选结果的条件
-            //  这里的条件是查找以 value 开头的名称
-            //  当前项的数据源对象 record
+            // onFilter 配置项是用来过滤表格数据的函数
+            //  value 当前筛选的值，在 filterDropdown 中输入的搜索条件
+            //  record: 当前行的数据，在 Table 中的数据源 dataSource 中的某一行数据。
             onFilter: (value, record) => record.name.indexOf(value) === 0,
             sorter: (a, b) => a.name.length - b.name.length,
             sortDirections: ['descend'],
@@ -239,34 +239,32 @@ const Table3 = () => {
             address: 'London No. 2 Lake Park',
         },
     ];
-    const [searchText, setSearchText] = useState('');
-    const [searchedColumn, setSearchedColumn] = useState('');
-    const searchInput = useRef(null);
+    const [searchText, setSearchText] = useState(''); // 定义搜索文本的状态变量
+    const [searchedColumn, setSearchedColumn] = useState(''); // 定义筛选列名的状态变量
+    const searchInput = useRef(null); // 定义一个用于获取搜索框的变量
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
-        setSearchText(selectedKeys[0]);
-        setSearchedColumn(dataIndex);
+        setSearchText(selectedKeys[0]); //把输入框的值设置成高光
+        setSearchedColumn(dataIndex); //找到当前筛选的列 是name or age or address
     };
     const handleReset = (clearFilters) => {
         clearFilters();
         setSearchText('');
     };
-    const getColumnSearchProps = (dataIndex) => ({
-        // 通过 filterDropdown 自定义的列筛选功能，并实现一个搜索列的示例。
-        // 给函数 clearFilters 添加 boolean 类型参数 closeDropdown，
-        // 是否关闭筛选菜单，默认为 true。添加 boolean 类型参数 confirm，清除筛选时是否提交已选项，默认 true。
+    const getColumnSearchProps = (dataIndex) => ({ // 生成配置对象以实现列筛选
+        // 通过 filterDropdown 自定义的列筛选功能，渲染一个列筛选的下拉框。
+        //在 filterDropdown 内部进行搜索操作之后，配合使用 onFilter 配置项来过滤数据
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
-            <div
-                style={{
-                    padding: 8,
-                }}
-                onKeyDown={(e) => e.stopPropagation()}
+            //参数分别表示 设置当前的搜索条件、当前的筛选条件、确认搜索、清除筛选条件、关闭下拉框等操作
+            //filterDropdown 的 selectedKeys 值会作为参数 value 传递给 onFilter 函数使用，用来过滤表格数据。
+            <div style={{ padding: 8 }}
+                onKeyDown={(e) => e.stopPropagation()} //为了防止键盘事件冒泡，避免影响到其他组件
             >
                 <Input
                     ref={searchInput}
                     placeholder={`Search ${dataIndex}`}
                     value={selectedKeys[0]}
-                    onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])} //selectedKeys 属性的值需要是一个数组格式
                     onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
                     style={{
                         marginBottom: 8,
@@ -279,18 +277,14 @@ const Table3 = () => {
                         onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
                         icon={<SearchOutlined />}
                         size="small"
-                        style={{
-                            width: 90,
-                        }}
+                        style={{ width: 90 }}
                     >
                         Search
                     </Button>
                     <Button
                         onClick={() => clearFilters && handleReset(clearFilters)}
                         size="small"
-                        style={{
-                            width: 90,
-                        }}
+                        style={{ width: 90 }}
                     >
                         Reset
                     </Button>
@@ -319,6 +313,7 @@ const Table3 = () => {
                 </Space>
             </div>
         ),
+        // 设置一个放大镜的图标，不写的话为默认的那个图标
         filterIcon: (filtered) => (
             <SearchOutlined
                 style={{ color: filtered ? '#1890ff' : undefined }}
@@ -326,9 +321,12 @@ const Table3 = () => {
         ),
         onFilter: (value, record) =>
             record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+        //当筛选下拉菜单打开或关闭时触发
         onFilterDropdownOpenChange: (visible) => {
             if (visible) {
+                //以免 searchInput 还没有渲染出来就执行了 select() 方法
                 setTimeout(() => searchInput.current?.select(), 100);
+                //通过 searchInput.current.select() 方法选中框中的文本
             }
         },
         render: (text) =>
@@ -338,9 +336,11 @@ const Table3 = () => {
                         backgroundColor: '#ffc069',
                         padding: 0,
                     }}
-                    searchWords={[searchText]}
-                    autoEscape
+                    searchWords={[searchText]} //指定要高亮显示的关键字，这里的 searchText 就是我们输入的搜索关键字。
+                    autoEscape //默认开启，用于转义搜索关键词中的特殊字符，例如 &、< 等，以便正常高亮显示。 
                     textToHighlight={text ? text.toString() : ''}
+                //它会将 textToHighlight 中与 searchWords 匹配的关键字进行替换，替换后的关键字会被包裹在 <span className="highlight">...</span> 标签中，
+                //并设置 highlightStyle 属性中指定的样式。而非关键字部分则保留原样。
                 />
             ) : (text),
     });
@@ -368,7 +368,10 @@ const Table3 = () => {
             sortDirections: ['descend', 'ascend'],
         },
     ];
-    return <Table columns={columns} dataSource={data} />;
+    return (<>
+        搜索筛选菜单
+        <Table columns={columns} dataSource={data} />
+    </>);
 }
 
 const App = () => {
