@@ -45,6 +45,16 @@ const routes = [
                         )
                 ),
             },
+            {
+                name: 'tabs测试',
+                path: '/tabs',
+                component: lazy(
+                    () =>
+                        import(
+                  /* webpackChunkName: "table" */ '../tab/index'
+                        )
+                ),
+            },
         ],
     },
 ];
